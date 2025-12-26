@@ -60,5 +60,5 @@ class Equipe
     }
 }
 
-$equipe = new Equipe(13, "senior");
+$equipe = new Equipe(30, "langoos");
 $equipe->create();

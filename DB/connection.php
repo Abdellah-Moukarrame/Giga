@@ -1,7 +1,7 @@
 <?php
 
 
-abstract class Conection
+class Conection
 {
     public $host;
     public $db_name;
