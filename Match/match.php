@@ -15,22 +15,24 @@ class Matches extends Event
     }
 
     public function getAll() {
-        $sql = "select * from matches";
+        $sql_matches = "select * from matches";
         $connection = $this->db->connectionDb();
-        $data_matches = $connection->prepare($sql);
+        $data_matches = $connection->prepare($sql_matches);
         $data_matches->execute();
         $matches = $data_matches->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function create() {
-        $sql = "insert into matches (score_A,score_b) values (:score_A,:score_B) ";
+        $sql_create_match = "insert into matches (score_A,score_b) values (:score_A,:score_B) ";
         $connection = $this->db->connectionDb();
-        $data_insert_matches = $connection->prepare($sql);
+        $data_insert_matches = $connection->prepare($sql_create_match);
         $data_insert_matches->execute([":score_A"=>$this->score_A,":score_B"=>$this->score_B]);
        
     }
 
-    public function delete() {}
+    public function delete() {
+        $sql_delete_match =
+    }
     
     public function update() {}
 }

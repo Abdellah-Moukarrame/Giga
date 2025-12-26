@@ -14,7 +14,7 @@ class Club
         $this->db = new Conection("localhost", "GIGA", "root", "");
     }
 
-    public function getAll()
+    public function getAll_clubs()
     {
         $connection = $this->db->connectionDb();
         $sql_get_clubs = "select nomC , ville_residence from club";
@@ -23,7 +23,7 @@ class Club
         $clubs = $data_club->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function create()
+    public function create_club()
     {
         $connection = $this->db->connectionDb();
         $sql_create_club = "insert into club (nomC , ville_residence) VALUES ( :name ,:ville ) ";
@@ -32,14 +32,21 @@ class Club
     
     }
 
-    public function delete()
+    public function delete_club()
     {
         
         $connection = $this->db->connectionDb();
-        $sql_delete_club = "delete into club where nomC = :name";
+        $sql_delete_club = "delete from club where nomC = :name";
         $data__delete  = $connection->prepare($sql_delete_club);
         $data__delete->execute([":name"=>$this->name]);
     
+
+    }
+    public function update_club(){
+        $connection =$this->db->connectionDb();
+        $sql_update_club = "update club set ville_residence = :ville where nomC = :nomC  ";
+        $data_update = $connection->prepare($sql_update_club);
+        $data_update->execute([":nomC"=>$this->name]);
 
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 
-class Conection
+abstract class Conection
 {
     public $host;
     public $db_name;
@@ -32,5 +32,4 @@ class Conection
         // return new PDO("mysql:host=$this->host;dbname=$this->db_name,$this->username,$this->password,$this->port");
     }
 }
-$db_infos = new Conection("localhost", "GIGA", "root", "");
-$db_connection = $db_infos->connectionDb();
+
