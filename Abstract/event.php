@@ -14,8 +14,8 @@ abstract class Event {
     {
         $this->id = $id;
     }
-    public function __set($id)
-    {
-        $this->id = $id;
-    }
+    // public function __set($id)
+    // {
+    //     $this->id = $id;
+    // }
 }

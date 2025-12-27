@@ -6,7 +6,7 @@ class Matches extends Event
 {
     public int $score_A, $score_B , $equipe_A ,$equipe_B;
     public $db;
-    public function __construct($id, $name,$score_A, $score_B , $equipe_A ,$equipe_B)
+    public function __construct()
     {
         parent::__construct($id, $name);
         $this->score_A = $score_A;
@@ -53,11 +53,15 @@ class Matches extends Event
         $sql_get_equipes = "select idE from equipe";
         $data_equipes = $connection->prepare($sql_get_equipes);
         $data_equipes->execute();
-        $equipes = $data_equipes->fetchAll(PDO::FETCH_ASSOC);
+        $equipes = $data_equipes->fetchAll(PDO::FETCH_NUM);
+        // $equipes = array_values($equipes);
+        
+        $equipes = array_map(fn($v) => $v[0], $equipes);
+        shuffle($equipes);
+        
+        var_dump($equipes)."\n";
 
-        $equipes_random = shuffle($equipes);
-        var_dump($equipes);
-        for ($i = 0; $i < count($equipes) - 1; $i + 2) {
+        for ($i = 0; $i < count($equipes); $i += 2) {
             $equipe_A = $equipes[$i];
             $equipe_B = $equipes[$i + 1];
             var_dump($equipe_A);
@@ -65,6 +69,9 @@ class Matches extends Event
             return;
         }
     }
+    public function scores_match (){
+        
+    }
 }
-
-
+$match = new Matches(1);
+$match->generate_match();
